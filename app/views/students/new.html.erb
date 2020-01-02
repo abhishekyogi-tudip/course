@@ -1,0 +1,46 @@
+
+
+
+  <div class = "modal header">
+   <button type="button" class = "close" data-dismiss="modal">x</button>
+   <h4 class="modal-tittle" id="myModallabel">Update Profile</h4>
+  </div>
+  <div class="modal-body">
+    <h1>Students New Form</h1>
+    <%if flash[:errors]%>
+      <%flash[:errors].each do |error| %>
+        <p style="color: red"><%=error%></p>
+      <% end %>
+    <%end %>
+
+    <%= form_for @student do |f| %>
+      <br>
+      <%= f.label :name%>
+      <%= f.text_field :name %>
+      <br>
+      <br>
+      <%= f.label :age%>
+      <%= f.number_field :age %>
+      <br>
+      <br>
+      <div>
+        <%= f.label :date%>
+        <%= f.datetime_select :created_at %>
+      </div>
+      <br>
+      <div class="field">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+        <div>
+          <%=f.button %>
+        </div>
+        <%= link_to 'Back', { controller: 'students', action: 'index'} %>
+        </div>
+      </div>
+    <%end%>
+  </div>
+  <div class="modal-footer">
+   <button class="btn btn-primary">
+    save
+   </button>
+  </div>

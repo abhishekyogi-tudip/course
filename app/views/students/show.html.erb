@@ -1,0 +1,24 @@
+<div class = "container text-center">
+ <h1>Name: <%=@student.name%></h1>
+ <h2>Age: <%=@student.age%></h2>
+ <%= button_to "Profile Pic", @student.image.url, method: :get %>
+
+ <h2>Courses</h2>
+ <%= button_to "Register course", new_enrollment_path, method: :get %>
+ <ul>
+   <% @student.enrollments.each do|enrollment| %>
+     <li><%= enrollment.course.name %></li>
+     <%= button_to "Drop Enrollment", enrollment_path(enrollment), method: :delete %>
+   <% end %>
+ </ul>
+
+ <%= button_to "Edit Student", edit_student_path, method: :get %>
+ <br>
+ <%= button_to "Destroy student", student_path, method: :delete %>
+ <br>
+ <%= link_to 'Back', { controller: 'students', action: 'index'} %>
+</div>
+<!%= link_to "Destroy Student", student_path %>
+
+
+

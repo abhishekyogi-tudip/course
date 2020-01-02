@@ -1,0 +1,47 @@
+<div class="modal fade" id="edit_activity_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="exampleModalLabel">Edit Student</h3>
+      </div>
+      <div class="modal-body">
+
+      <%if flash[:errors]%>
+        <%flash[:errors].each do |error| %>
+          <p style="color: red"><%=error%></p>
+        <% end %>
+      <%end %>
+        <%= @stud.id %>
+          <%= form_for @stud, method: :patch do |f| %>
+            <div>
+              Name:
+              <%= f.text_field :name %>
+            </div>
+            <br>
+            <div>
+              Age:
+              <%= f.number_field :age %>
+            </div>
+            <br>
+            <div>
+            <%= image_tag @stud.image.url, style: 'width:50px'%>
+            </div>
+<!--            <div>-->
+              <%#= button_to "Destroy student", student_path, method: :delete %>
+<!--            </div>-->
+            <div>
+              <%= f.submit 'Submit'%>
+            </div>
+             <br>
+<!--          <div>-->
+            <%#= link_to 'Back', { controller: 'students', action: 'index'} %>
+<!--          </div>-->
+           <% end %>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

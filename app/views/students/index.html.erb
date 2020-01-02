@@ -1,0 +1,130 @@
+<div class="container text-center" %>
+  <br>
+  <h1>Students Index</h1>
+  <br>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |error| %>
+      <p style="color: red"><%= error %></p>
+    <% end %>
+  <% end %>
+  <!-- Button trigger modal -->
+  <button type="button" id="add_student_btn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add New Student
+  </button>
+
+  <br>
+  <table id="tableId">
+    <thead>
+    <th>Name</th> &nbsp;
+    <th>Age</th>
+    <th>Image</th>
+    </thead>
+
+
+    <% @students.each do |student| %>
+
+      <tr id=<%= student.id %>>
+        <%#=render @student %>
+        <%#= button_to 'new student', :remote => true, :onclick => "student.update(student); return false;"%>
+        <td>
+          <%= student.name %>
+          <!--          <%#= link_to student.name, student_path(student) %>	&nbsp;-->
+        </td>
+
+        <td>
+          <%= student.age %>
+        </td>
+<!--        <td><%#= image_tag student.image.url(:thumb), method: :get%></td>-->
+      </tr>
+    <% end %>
+  </table>
+  </ul>
+
+
+  <% link_to 'Edit', new_student_path, {:remote => true, 'data-toggle' => 'modal', 'data-target' => '#modaal-window',
+                                        class: 'btn btn-primary btn-lg'} %>
+
+  <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledly="MyModalLabel" , aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="modal-title" id="exampleModalLabel">Add New student</h3>
+        </div>
+        <div class="modal-body">
+          <%= form_for @student, url: students_path, :html => {id: 'studentForm'} do |f| %>
+            <br>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <br>
+            <br>
+            <%= f.label :age %>
+            <%= f.number_field :age %>
+            <br>
+            <br>
+            <div>
+              <%= f.label :date %>
+              <%= f.datetime_select :created_at %>
+            </div>
+            <br>
+            <div class="field">
+              <%= f.label :image %>
+              <%= f.file_field :image %>
+            </div>
+            </div>
+            </div>
+            <%= f.submit "Add", :class => "btn btn-success" %>
+          <% end %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+<!--  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog" role="document">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--            <span aria-hidden="true">&times;</span>-->
+<!--          </button>-->
+<!--          <h3 class="modal-title" id="exampleModalLabel">Add New student</h3>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+          <%#= form_for @student, url: students_path do |f| %>
+<!--            <br>-->
+            <%#= f.label :name %>
+            <%#= f.text_field :name %>
+<!--            <br>-->
+<!--            <br>-->
+            <%#= f.label :age %>
+            <%#= f.number_field :age %>
+<!--            <br>-->
+<!--            <br>-->
+<!--            <div>-->
+              <%#= f.label :date %>
+              <%#= f.datetime_select :created_at %>
+<!--            </div>-->
+<!--            <br>-->
+<!--            <div class="field">-->
+              <%#= f.label :image %>
+              <%#= f.file_field :image %>
+<!--            </div>-->
+<!--            </div>-->
+<!--            </div>-->
+            <%#= f.submit "Add", :class => "btn btn-primary" %>
+          <%# end %>
+<!--          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--          </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div id="modal-edit-show"></div>
